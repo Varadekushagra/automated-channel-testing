@@ -236,5 +236,3 @@ To install the [Roku JavaScript Library](https://developer.roku.com/docs/develop
          node multipleDevices/multi.js  config.json
 
     d. View the generated test case report and log for each device, which are stored in the specified output directory (**/automated-channel-testing-master/jsLibrary/Results** by default).
-
-// Test line added to be removed
