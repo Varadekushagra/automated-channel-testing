@@ -36,7 +36,7 @@ describe("test_basic", () => {
       2000,
       capability
     );
-    await library.sideLoad("../sample/channel.zip", "rokudev", "123456");
+    await library.sideLoad("../../sample", "rokudev", "123456");
   });
 
   it("should launch the channel", async function () {

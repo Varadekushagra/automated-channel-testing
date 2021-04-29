@@ -37,7 +37,7 @@ class Client {
     return await this.doRequest("/launch", "post", {
       channelId: channel_code,
       contentId: contentID,
-      contentType: contentType
+      contentType: contentType,
     });
   }
 
@@ -63,7 +63,7 @@ class Client {
 
   async sendSequence(sequence) {
     return await this.doRequest("/press", "post", {
-      button_sequence: sequence
+      button_sequence: sequence,
     });
   }
 
@@ -71,7 +71,7 @@ class Client {
     return await this.doRequest("/input", "post", {
       channelId: channelId,
       contentId: contentID,
-      contentType: mediaType
+      contentType: mediaType,
     });
   }
 
@@ -90,7 +90,7 @@ class Client {
   async setTimeouts(timeoutType, delay) {
     return await this.doRequest("/timeouts", "post", {
       type: timeoutType,
-      ms: delay
+      ms: delay,
     });
   }
 
@@ -140,10 +140,10 @@ class Client {
           url: `${this.capability["robustest.baseURL"]}${url}`,
           data: body,
           headers: {
-            ...headers
+            ...headers,
           },
           maxContentLength: Infinity,
-          maxBodyLength: Infinity
+          maxBodyLength: Infinity,
         });
 
         return result;
@@ -157,11 +157,13 @@ class Client {
       if (response == undefined) {
         throw new Error("Could not get any response");
       }
-      const status = response.status;
+
       let errorMessage;
-      if (status == 400) {
+      if (response && response.status && response.status == 400) {
         errorMessage = response.data;
-      } else {
+      }
+
+      if (response.data && response.data.value && response.data.value.message) {
         errorMessage = response.data.value.message;
       }
       throw new Error(errorMessage);

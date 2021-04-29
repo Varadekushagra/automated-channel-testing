@@ -48,7 +48,7 @@ const checkText = (node, locator) => {
 const methodsMap = {
   attr: checkAttribute,
   tag: checkTag,
-  text: checkText
+  text: checkText,
 };
 
 const getMsFromString = (value) => {
@@ -179,10 +179,11 @@ class Library {
     const stream = fs.createReadStream(path);
 
     form.append("channel", stream, {
-      contentType: "application/zip"
+      contentType: "application/zip",
     });
     form.append("username", user);
     form.append("password", pass);
+
     await this.client.sideLoadChannel(form);
     return true;
   }
